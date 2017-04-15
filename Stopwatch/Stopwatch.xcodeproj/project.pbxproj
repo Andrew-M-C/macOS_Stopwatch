@@ -11,6 +11,9 @@
 		D23FB3081EA223A7003E47ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D23FB3071EA223A7003E47ED /* main.m */; };
 		D23FB30A1EA223A7003E47ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D23FB3091EA223A7003E47ED /* Assets.xcassets */; };
 		D23FB30D1EA223A7003E47ED /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D23FB30B1EA223A7003E47ED /* MainMenu.xib */; };
+		D23FB3171EA225DC003E47ED /* AMCView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23FB3161EA225DC003E47ED /* AMCView.m */; };
+		D23FB31A1EA22639003E47ED /* AMCTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D23FB3191EA22639003E47ED /* AMCTools.m */; };
+		D23FB3201EA226E5003E47ED /* StwRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = D23FB31F1EA226E5003E47ED /* StwRootController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,13 @@
 		D23FB3091EA223A7003E47ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D23FB30C1EA223A7003E47ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		D23FB30E1EA223A7003E47ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D23FB3151EA225DC003E47ED /* AMCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMCView.h; path = AMC_libs/AMCView.h; sourceTree = "<group>"; };
+		D23FB3161EA225DC003E47ED /* AMCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMCView.m; path = AMC_libs/AMCView.m; sourceTree = "<group>"; };
+		D23FB3181EA22639003E47ED /* AMCTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMCTools.h; path = AMC_libs/AMCTools.h; sourceTree = "<group>"; };
+		D23FB3191EA22639003E47ED /* AMCTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AMCTools.m; path = AMC_libs/AMCTools.m; sourceTree = "<group>"; };
+		D23FB31B1EA2265B003E47ED /* AMCObjCTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMCObjCTools.h; path = AMC_libs/AMCObjCTools.h; sourceTree = "<group>"; };
+		D23FB31E1EA226E5003E47ED /* StwRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StwRootController.h; sourceTree = "<group>"; };
+		D23FB31F1EA226E5003E47ED /* StwRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StwRootController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +47,7 @@
 		D23FB2F71EA223A6003E47ED = {
 			isa = PBXGroup;
 			children = (
+				D23FB3141EA225C9003E47ED /* AMC libs */,
 				D23FB3021EA223A7003E47ED /* Stopwatch */,
 				D23FB3011EA223A7003E47ED /* Products */,
 			);
@@ -53,11 +64,7 @@
 		D23FB3021EA223A7003E47ED /* Stopwatch */ = {
 			isa = PBXGroup;
 			children = (
-				D23FB3031EA223A7003E47ED /* AppDelegate.h */,
-				D23FB3041EA223A7003E47ED /* AppDelegate.m */,
-				D23FB3091EA223A7003E47ED /* Assets.xcassets */,
-				D23FB30B1EA223A7003E47ED /* MainMenu.xib */,
-				D23FB30E1EA223A7003E47ED /* Info.plist */,
+				D23FB31C1EA2268A003E47ED /* root elements */,
 				D23FB3061EA223A7003E47ED /* Supporting Files */,
 			);
 			path = Stopwatch;
@@ -69,6 +76,32 @@
 				D23FB3071EA223A7003E47ED /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D23FB3141EA225C9003E47ED /* AMC libs */ = {
+			isa = PBXGroup;
+			children = (
+				D23FB31B1EA2265B003E47ED /* AMCObjCTools.h */,
+				D23FB3181EA22639003E47ED /* AMCTools.h */,
+				D23FB3191EA22639003E47ED /* AMCTools.m */,
+				D23FB3151EA225DC003E47ED /* AMCView.h */,
+				D23FB3161EA225DC003E47ED /* AMCView.m */,
+			);
+			name = "AMC libs";
+			sourceTree = "<group>";
+		};
+		D23FB31C1EA2268A003E47ED /* root elements */ = {
+			isa = PBXGroup;
+			children = (
+				D23FB31E1EA226E5003E47ED /* StwRootController.h */,
+				D23FB31F1EA226E5003E47ED /* StwRootController.m */,
+				D23FB3031EA223A7003E47ED /* AppDelegate.h */,
+				D23FB3041EA223A7003E47ED /* AppDelegate.m */,
+				D23FB3091EA223A7003E47ED /* Assets.xcassets */,
+				D23FB30B1EA223A7003E47ED /* MainMenu.xib */,
+				D23FB30E1EA223A7003E47ED /* Info.plist */,
+			);
+			name = "root elements";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +176,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D23FB3081EA223A7003E47ED /* main.m in Sources */,
+				D23FB3171EA225DC003E47ED /* AMCView.m in Sources */,
 				D23FB3051EA223A7003E47ED /* AppDelegate.m in Sources */,
+				D23FB31A1EA22639003E47ED /* AMCTools.m in Sources */,
+				D23FB3201EA226E5003E47ED /* StwRootController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -242,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
