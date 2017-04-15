@@ -690,9 +690,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField identifier="Countdown" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsK-Z4-ZJJ">
-                        <rect key="frame" x="147" y="164" width="139" height="17"/>
+                        <rect key="frame" x="147" y="164" width="198" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="O:OO:OO" id="H5e-Fl-MPP">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="O:OO:OO" id="H5e-Fl-MPP">
                             <font key="font" size="13" name="Monaco"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

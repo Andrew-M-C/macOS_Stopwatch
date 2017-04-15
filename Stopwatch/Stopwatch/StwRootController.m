@@ -67,17 +67,65 @@
 		return;
 	}
 	
-	NSRect viewFrame = [self.view frame];
+	NSRect frame = [self.view frame];
 	NSString *text = [_textTime stringValue];
 	NSFont *font = [_textTime font];
 	NSSize strSize;
 	
+	frame.origin.x = 30.0;
+	frame.origin.y = NSHeight(frame) * 0.5;
+	frame.size.width -= 60.0;
+	frame.size.height = 30.0;
+	
 	if (nil == font) {
 		font = [NSFont fontWithName:@"Monaco" size:20.0];
 	}
-	
+
 	strSize = [AMCTools string:text sizeWithFont:font];
-	AMCDebug("Str size: %@", [AMCTools descriptionWithNSSize:strSize]);
+	if (strSize.width < NSWidth(frame))
+	{
+		/* increment mode */
+		NSSize lastStrSize = strSize;
+		NSSize nextStrSize = strSize;
+		CGFloat nextFontSize = [font pointSize];
+		CGFloat lastFontSize = lastFontSize;
+		do {
+			lastStrSize = nextStrSize;
+			lastFontSize = nextFontSize;
+			nextFontSize += 1.0;
+			nextStrSize = [AMCTools string:text sizeWithFontName:@"Monaco" size:nextFontSize];
+//			AMCPrintf(@"Try %@ of %f", [AMCTools descriptionWithNSSize:nextStrSize], nextFontSize);
+		} while (nextStrSize.width < NSWidth(frame));
+		
+		frame.size.height = lastStrSize.height + 10.0;
+		frame.origin.y -= NSHeight(frame) * 0.5;
+		[_textTime setFont:[NSFont fontWithName:@"Monaco" size:lastFontSize]];
+		[_textTime setFrame:frame];
+		AMCDebug(@"Set text: %@, font size: %f", [AMCTools descriptionWithNSRect:frame], lastFontSize);
+	}
+	else {
+		/* decrement mode */
+		NSSize lastStrSize = strSize;
+		NSSize nextStrSize = strSize;
+		CGFloat nextFontSize = [font pointSize];
+		CGFloat lastFontSize = lastFontSize;
+		do {
+			lastStrSize = nextStrSize;
+			lastFontSize = nextFontSize;
+			nextFontSize -= 1.0;
+			nextStrSize = [AMCTools string:text sizeWithFontName:@"Monaco" size:nextFontSize];
+//			AMCPrintf(@"Try %@ of %f", [AMCTools descriptionWithNSSize:nextStrSize], nextFontSize);
+		} while (nextStrSize.width > NSWidth(frame));
+		
+		frame.size.height = lastStrSize.height + 10.0;
+		frame.origin.y -= NSHeight(frame) * 0.5;
+		[_textTime setFont:[NSFont fontWithName:@"Monaco" size:lastFontSize]];
+		[_textTime setFrame:frame];
+		AMCDebug(@"Set text: %@, font size: %f", [AMCTools descriptionWithNSRect:frame], lastFontSize);
+	}
+	
+	[_view setNeedsDisplay:YES];
+	[_textTime setNeedsDisplay:YES];
 }
 
 
