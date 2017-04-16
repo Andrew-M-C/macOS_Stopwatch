@@ -13,6 +13,7 @@
 {
 	NSTimeInterval _upTime;
 	NSTextField __weak *_textTime;
+	NSTimer *_timer;
 }
 
 - (void)_self_init
@@ -98,6 +99,7 @@
 		} while (nextStrSize.width < NSWidth(frame));
 		
 		frame.size.height = lastStrSize.height + 10.0;
+		frame.size.width += 30.0;
 		frame.origin.y -= NSHeight(frame) * 0.5;
 		[_textTime setFont:[NSFont fontWithName:@"Monaco" size:lastFontSize]];
 		[_textTime setFrame:frame];
@@ -118,6 +120,7 @@
 		} while (nextStrSize.width > NSWidth(frame));
 		
 		frame.size.height = lastStrSize.height + 10.0;
+		frame.size.width += 30.0;
 		frame.origin.y -= NSHeight(frame) * 0.5;
 		[_textTime setFont:[NSFont fontWithName:@"Monaco" size:lastFontSize]];
 		[_textTime setFrame:frame];
@@ -126,6 +129,55 @@
 	
 	[_view setNeedsDisplay:YES];
 	[_textTime setNeedsDisplay:YES];
+}
+
+
+/********/
+#pragma mark - Schedule control
+
+- (void)_show_time:(NSTimeInterval)interval
+{
+	NSInteger secs = (NSInteger)interval;
+	NSInteger hour = secs / 3600;
+	NSInteger min  = (secs - (hour * 3600)) / 60;
+	NSInteger sec  = (secs - (hour * 3600) - (min * 60));
+	NSInteger milisec = (NSInteger)((interval - secs) * 1000);
+
+	NSString *timeStr = [NSString stringWithFormat:@"%ld:%02ld:%02ld.%03ld",
+						 hour, min, sec, milisec];
+	timeStr = [timeStr stringByReplacingOccurrencesOfString:@"0" withString:@"O"];
+
+//	AMCPrintf(@"%f, %ld", interval, secs);
+	[_textTime setStringValue:timeStr];
+}
+
+- (void)_timer_routine:(id)arg
+{
+	NSTimeInterval interval = [AMCTools systemUpTime] - _upTime;
+	[self _show_time:interval];
+
+	UpdateSystemActivity(1);
+}
+
+
+- (void)_start_timer
+{
+	_upTime = [AMCTools systemUpTime];
+	_timer = [NSTimer scheduledTimerWithTimeInterval:0.003
+											  target:self
+											selector:@selector(_timer_routine:)
+											userInfo:nil
+											 repeats:YES];
+}
+
+
+- (void)_stop_timer
+{
+	NSTimeInterval stopTime = [AMCTools systemUpTime];
+	[_timer invalidate];
+	AMCRelease(_timer);
+
+	[self _show_time:stopTime - _upTime];
 }
 
 
@@ -142,6 +194,11 @@
 - (BOOL)handleMouseDownAtView:(AMCView *)view event:(NSEvent *)event
 {
 	AMCDebug(@"Mouse down at %@", view);
+	if (_timer) {
+		[self _stop_timer];
+	} else {
+		[self _start_timer];
+	}
 	return NO;
 }
 
